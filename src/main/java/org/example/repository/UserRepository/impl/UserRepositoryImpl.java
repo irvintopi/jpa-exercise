@@ -20,13 +20,13 @@ public class UserRepositoryImpl implements UserRepository {
             u.setRole(u.getRole());
             u.setPassword(u.getPassword());
             entityManager.getTransaction().commit();
-            System.out.println("User successfully updated");
+            System.out.println("User updated!");
         }
         else {
             entityManager.getTransaction().begin();
             entityManager.persist(u);
             entityManager.getTransaction().commit();
-            System.out.println("User successfully added");
+            System.out.println("User added!");
         }
         return u;
     }

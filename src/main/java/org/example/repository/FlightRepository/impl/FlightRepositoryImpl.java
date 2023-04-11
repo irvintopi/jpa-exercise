@@ -25,13 +25,13 @@ public class FlightRepositoryImpl implements FlightRepository {
             f.setAirline(f.getAirline());
             f.setStatus(f.getStatus());
             entityManager.getTransaction().commit();
-            System.out.println("Flight successfully updated");
+            System.out.println("Flight updated!");
         }
         else {
             entityManager.getTransaction().begin();
             entityManager.persist(f);
             entityManager.getTransaction().commit();
-            System.out.println("Flight successfully added");
+            System.out.println("Flight added!");
         }
         return f;
     }

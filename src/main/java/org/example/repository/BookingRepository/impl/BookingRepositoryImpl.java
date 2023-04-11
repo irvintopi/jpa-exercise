@@ -19,13 +19,13 @@ public class BookingRepositoryImpl implements BookingRepository {
             b.setBookingDate(b.getBookingDate());
             b.setStatus(b.getStatus());
             entityManager.getTransaction().commit();
-            System.out.println("Booking successfully updated");
+            System.out.println("Booking updated!");
         }
         else {
             entityManager.getTransaction().begin();
             entityManager.persist(b);
             entityManager.getTransaction().commit();
-            System.out.println("Booking successfully added");
+            System.out.println("Booking added!");
         }
         return b;
     }
@@ -37,8 +37,9 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public List<Booking> findAll() {
-        TypedQuery<Booking> result = entityManager.createQuery("SELECT b from Booking b", Booking.class);
-        return result.getResultList();
+        String jpql = "SELECT b FROM Booking b";
+        TypedQuery<Booking> query = entityManager.createQuery(jpql, Booking.class);
+        return query.getResultList();
     }
 
     @Override

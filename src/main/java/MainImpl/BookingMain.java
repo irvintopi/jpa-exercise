@@ -5,7 +5,6 @@ import org.example.model.Flight;
 import org.example.model.User;
 import org.example.services.BookingService;
 import org.example.services.Impl.*;
-
 import java.sql.Date;
 import java.util.*;
 
@@ -21,16 +20,8 @@ public class BookingMain {
     public static Booking add(){
         Scanner read = new Scanner(System.in);
         BookingService booking = new BookingServiceImpl();
-        Integer id = 0;
         System.out.println("\nAdding booking\n");
-        System.out.println("Enter the booking id");
-        try {
-            id = read.nextInt();
-            read.nextLine();
-        }catch (InputMismatchException e){
-            System.out.println("Id should be a number");
-            read.nextLine();
-        }
+
         System.out.println("Enter the id of the user who booked the flight");
         int uId = read.nextInt();
         UserServiceImpl user = new UserServiceImpl();
@@ -55,7 +46,7 @@ public class BookingMain {
                 flights.add(fbyId);
             }
             else if (result != -1){
-                System.out.println("This flight doesnt exist");
+                System.out.println("This flight doesn't exist");
                 return null;
             }
         }
@@ -64,23 +55,15 @@ public class BookingMain {
             Date date = new Date(System.currentTimeMillis());
             System.out.println("Enter the status");
             String status = read.nextLine();
-            Optional<Booking> bookingById = booking.findById(id);
-            if (bookingById.isPresent()){
-                Booking b1 = bookingById.get();
-                b1=setter(b1,status,date,ubyId,flights);
-                booking.save(b1);
-                return b1;
-            }
-            else {
-                Booking b2 = new Booking();
-                b2.setId(null);
-                b2=setter(b2,status,date,ubyId,flights);
-                booking.save(b2);
-                return b2;
-            }
+
+                Booking b = new Booking();
+                b=setter(b,status,date,ubyId,flights);
+                booking.save(b);
+                return b;
+
         }
         else {
-            System.out.println("Couldnt add booking. Invalid user");
+            System.out.println("Couldn't add booking. Invalid user");
             return null;
         }
     }
