@@ -67,7 +67,7 @@ public class UserMain {
         UserService user = new UserServiceImpl();
         System.out.println("\nDeleting user\n");
         try {
-            System.out.println("Enter the user id you want to delete");
+            System.out.println("Enter the id of the user you want to delete");
             find = read.nextInt();
             read.nextLine();
         }catch (InputMismatchException e){

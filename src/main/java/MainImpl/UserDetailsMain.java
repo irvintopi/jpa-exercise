@@ -78,6 +78,6 @@ public class UserDetailsMain {
             userDetail.delete(udelete);
         }
         else
-            System.out.println("These user details dont exist");
+            System.out.println("These user details don't exist");
     }
 }
